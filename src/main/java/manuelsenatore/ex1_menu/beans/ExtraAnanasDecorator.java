@@ -1,8 +1,8 @@
 package manuelsenatore.ex1_menu.beans;
 
-public class ExtraAnanasTopping extends ExtraTopping{
+public class ExtraAnanasDecorator extends ExtraTopping{
 
-    public ExtraAnanasTopping (Consumation consumation) {
+    public ExtraAnanasDecorator(Consumation consumation) {
         this.consumation = consumation;
     }
 

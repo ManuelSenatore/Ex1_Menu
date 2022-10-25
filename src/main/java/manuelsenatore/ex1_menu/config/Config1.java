@@ -23,6 +23,6 @@ public class Config1 {
     @Bean
     @Scope("prototype")
     public Consumation PizzaDelDiavolo() {
-        return new ExtraPomodoroDecorator( new ExtraMozzarellaDecorator(new ExtraProsciuttoDecorator(new ExtraAnanasTopping(new Pizza()))));
+        return new ExtraPomodoroDecorator( new ExtraMozzarellaDecorator(new ExtraProsciuttoDecorator(new ExtraAnanasDecorator(new Pizza()))));
     }
 }

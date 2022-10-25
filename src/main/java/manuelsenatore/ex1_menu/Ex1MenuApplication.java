@@ -8,6 +8,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class Ex1MenuApplication {
@@ -15,15 +17,11 @@ public class Ex1MenuApplication {
     public static void main(String[] args) {
         SpringApplication.run(Ex1MenuApplication.class, args);
 
-     /*   Consumation margherita = new ExtraPomodoroDecorator(new ExtraMozzarellaDecorator(new Pizza()));
-        Consumation margheritaConCotto = new ExtraProsciuttoDecorator(margherita);
-        System.out.println(margherita + " - prezzo " + margherita.getPrice() + " €");
-        System.out.println(margheritaConCotto + " - prezzo " + margheritaConCotto.getPrice() + " €");
-     */
-        conf1();
+        Ordinazione ordinazioni1 = new Ordinazione(conf1());
+        ordinazioni1.calcolaTotaleOrdine();
     }
 
-    public static void conf1(){
+    public static List<Consumation> conf1(){
         ApplicationContext ctx = new AnnotationConfigApplicationContext(Config1.class);
 
         Consumation p1 = ctx.getBean("Margherita", Consumation.class);
@@ -34,6 +32,16 @@ public class Ex1MenuApplication {
 
         Consumation p3 = ctx.getBean("PizzaDelDiavolo", Consumation.class);
         System.out.println(p3.getProductName() + " - prezzo " + p3.getPrice() + " €");
+
+        List<Consumation> consumations = new ArrayList<>();
+        consumations.add(p1);
+        consumations.add(p2);
+        consumations.add(p3);
+
+
+        ((AnnotationConfigApplicationContext)ctx).close();
+
+        return consumations;
     }
 
 }
