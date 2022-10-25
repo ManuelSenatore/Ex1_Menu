@@ -16,8 +16,9 @@ public class Ex1MenuApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(Ex1MenuApplication.class, args);
+         getTavolo();
 
-        Ordinazione ordinazioni1 = new Ordinazione(conf1());
+        Ordinazione ordinazioni1 = new Ordinazione(conf1(), getTavolo(), 6);
         ordinazioni1.calcolaTotaleOrdine();
     }
 
@@ -33,6 +34,7 @@ public class Ex1MenuApplication {
         Consumation p3 = ctx.getBean("PizzaDelDiavolo", Consumation.class);
         System.out.println(p3.getProductName() + " - prezzo " + p3.getPrice() + " €");
 
+
         List<Consumation> consumations = new ArrayList<>();
         consumations.add(p1);
         consumations.add(p2);
@@ -42,6 +44,11 @@ public class Ex1MenuApplication {
         ((AnnotationConfigApplicationContext)ctx).close();
 
         return consumations;
+    }
+
+    public static Tavolo getTavolo(){
+        Tavolo tav = new Tavolo(10, Stato.LIBERO);
+        return tav;
     }
 
 }
